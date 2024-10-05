@@ -1,11 +1,11 @@
 const express = require("express");
 const verifyToken = require('./validate_token');
 const router = express.Router(); //manejador de rutas de express
-const animalSchema = require("../models/animal");
+const vehiculoSchema = require("../models/vehiculo");
 //Nuevo animal
-router.post("/animals", (req, res) => {
-    const animal = animalSchema(req.body);
-    animal
+router.post("/vehiculo", (req, res) => {
+    const vehiculo = vehiculoSchema(req.body);
+    vehiculo
         .save()
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
@@ -13,35 +13,35 @@ router.post("/animals", (req, res) => {
 module.exports = router;
 
 //Consultar todos los animales
-router.get("/animals", verifyToken, (req, res) => {
-    animalSchema.find()
+router.get("/vehiculo", verifyToken, (req, res) => {
+    vehiculoSchema.find()
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
 //Consultar un animal por su id
-router.get("/animals/:id", (req, res) => {
+router.get("/vehiculo/:id", (req, res) => {
     const { id } = req.params;
-    animalSchema
+    vehiculoSchema
         .findById(id)
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
 //Modificar el nombre de un animal por su id
-router.put("/animals/:id", (req, res) => {
+router.put("/vehiculo/:id", (req, res) => {
     const { id } = req.params;
-    const { nombre, edad, tipo, fecha } = req.body;
-    animalSchema
+    const { vehiculo_id, marca, modelo, año, precio, color, estado } = req.body;
+    vehiculoSchema
         .updateOne({ _id: id }, {
-            $set: { nombre, edad, tipo, fecha }
+            $set: { vehiculo_id, marca, modelo, año, precio, color, estado }
         })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
 //Eliminar un animal por su id
 
-router.delete("/animals/:id", (req, res) => {
+router.delete("/vehiculo/:id", (req, res) => {
     const { id } = req.params;
-    animalSchema
+    vehiculoSchema
         .findByIdAndDelete(id)
         .then((data) => {
             res.json(data);

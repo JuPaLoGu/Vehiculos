@@ -1,4 +1,5 @@
 const mongoose = require("mongoose"); //Importar componente mongoose
+const vehiculo = require("./vehiculo");
 
 const areaSchema = mongoose.Schema({
     nombre: {
@@ -9,6 +10,6 @@ const areaSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    animales: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Animal'}]
+    vehiculo: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Animal'}]
 });
 module.exports = mongoose.model('Area', areaSchema);

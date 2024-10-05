@@ -29,4 +29,4 @@ const vehiculoSchema = mongoose.Schema({
         require: true
     }
 });
-module.exports = mongoose.model("Vehiculo", animalSchema);
+module.exports = mongoose.model("Vehiculo", vehiculoSchema);
