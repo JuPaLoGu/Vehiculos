@@ -1,16 +1,16 @@
 const mongoose = require("mongoose"); // importando el componente mogoose
 const vehiculoSchema = mongoose.Schema({
-    vehiculo_id: {
+    vehiculoid: {
         type: Number,
         required: true,
     },
     marca: {
-        type: Number,
-        required: true,
-    },
-    modelo: {
         type: String,
         required: false,
+    },
+    modelo: {
+        type: Number,
+        required: true,
     },
     año: {
         type: Date,
@@ -22,11 +22,11 @@ const vehiculoSchema = mongoose.Schema({
     },
     color: {
         type: String,
-        require: true
+        require: false
     },
     estado: {
         type: String,
-        require: true
+        require: false
     }
 });
 module.exports = mongoose.model("Vehiculo", vehiculoSchema);
